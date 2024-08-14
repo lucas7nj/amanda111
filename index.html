@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha uma Opção</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background-color: #f0f0f0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .option {
+            display: inline-block;
+            padding: 20px 40px;
+            margin: 10px;
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .yes {
+            background-color: #4CAF50; /* Verde */
+        }
+        .no {
+            background-color: #F44336; /* Vermelho */
+            position: absolute;
+            animation: move 3s infinite linear;
+        }
+        @keyframes move {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(calc(100vw - 120px)); }
+            100% { transform: translateX(0); }
+        }
+        .animation {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .show-animation {
+            display: block;
+            animation: popin 1s forwards;
+        }
+        @keyframes popin {
+            0% { opacity: 0; transform: scale(0); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p id="question">Vamos se ver hoje?</p>
+        <a href="#" class="option yes" id="yes">SIM</a>
+        <a href="#" class="option no" id="no">NÃO</a>
+        <div class="animation" id="animation">Ótimo! Até mais!</div>
+    </div>
+    <script>
+        document.getElementById('yes').addEventListener('click', function(event) {
+            event.preventDefault(); // Evita o comportamento padrão do link
+            document.getElementById('question').style.display = 'none';
+            document.getElementById('yes').style.display = 'none';
+            document.getElementById('no').style.display = 'none';
+            var animation = document.getElementById('animation');
+            animation.classList.add('show-animation');
+        });
+    </script>
+</body>
+</html>
